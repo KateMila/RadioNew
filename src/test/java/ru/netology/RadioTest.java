@@ -5,6 +5,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
+    @Test
+    void getCurrentStation() {
+        Radio station = new Radio();
+
+        station.getCurrentStation();
+        int expected = 0;
+        int actual = station.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+
 
     @Test
     void setCurrentStation() {
@@ -16,6 +27,27 @@ class RadioTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    void setCurrentStation1() {
+        Radio station = new Radio();
+
+        station.setCurrentStation(9);
+        int expected = 9;
+        int actual = station.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void setCurrentStation2() {
+        Radio station = new Radio();
+
+        station.setCurrentStation(-1);
+        int expected = 0;
+        int actual = station.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+
 
     @Test
     void switchToNextStation() {
@@ -39,6 +71,27 @@ class RadioTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    void switchToNextStation2() {
+        Radio station = new Radio();
+
+        station.switchToNextStation(-1);
+        int expected = 0;
+        int actual = station.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void switchToNextStation3() {
+        Radio station = new Radio();
+
+        station.switchToNextStation(10);
+        int expected = 0;
+        int actual = station.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
 
     @Test
     void swithToPreviousStation() {
@@ -57,6 +110,37 @@ class RadioTest {
 
         station.swithToPreviousStation(9);
         int expected = 8;
+        int actual = station.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void swithToPreviousStation2() {
+        Radio station = new Radio();
+
+        station.swithToPreviousStation(8);
+        int expected = 7;
+        int actual = station.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void swithToPreviousStation3() {
+        Radio station = new Radio();
+
+        station.swithToPreviousStation(-1);
+        int expected = 9;
+        int actual = station.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void swithToPreviousStation4() {
+        Radio station = new Radio();
+
+        station.swithToPreviousStation(10);
+        int expected = 0;
         int actual = station.getCurrentStation();
 
         assertEquals(expected, actual);
@@ -97,6 +181,17 @@ class RadioTest {
         assertEquals(expected, actual);
 
     }
+    @Test
+    void setCurrentVolume3() {
+        Radio sound = new Radio();
+
+        sound.setCurrentVolume(-1);
+        int expected = 0;
+        int actual = sound.getCurrentVolume();
+
+        assertEquals(expected, actual);
+
+    }
 
     @Test
     void increaseVolume() {
@@ -115,6 +210,16 @@ class RadioTest {
 
         sound.increaseVolume(8);
         int expected = 9;
+        int actual = sound.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void increaseVolume2() {
+        Radio sound = new Radio();
+
+        sound.increaseVolume(11);
+        int expected = 0;
         int actual = sound.getCurrentVolume();
 
         assertEquals(expected, actual);
@@ -138,6 +243,26 @@ class RadioTest {
 
         sound.reduceVolume(0);
         int expected = 10;
+        int actual = sound.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void reduceVolume2() {
+        Radio sound = new Radio();
+
+        sound.reduceVolume(-1);
+        int expected = 10;
+        int actual = sound.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void reduceVolume3() {
+        Radio sound = new Radio();
+
+        sound.reduceVolume(11);
+        int expected = 0;
         int actual = sound.getCurrentVolume();
 
         assertEquals(expected, actual);

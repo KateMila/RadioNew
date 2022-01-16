@@ -29,7 +29,7 @@ public class Radio {
     }
 
     public void swithToPreviousStation(int currentStation) {
-        if (currentStation == 0) {
+        if (currentStation <= 0) {
             this.currentStation = 9;
         } else if (currentStation <= 9) {
             this.currentStation = currentStation - 1;
@@ -60,7 +60,7 @@ public class Radio {
     }
 
     public void reduceVolume(int currentVolume) {
-        if (currentVolume == 0) {
+        if (currentVolume <= 0) {
             this.currentVolume = 10;
         } else if (currentVolume <= 10) {
             this.currentVolume = currentVolume - 1;

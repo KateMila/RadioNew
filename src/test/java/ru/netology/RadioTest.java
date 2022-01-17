@@ -6,266 +6,315 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
     @Test
-    void getCurrentStation() {
-        Radio station = new Radio();
+    void shouldGetCurrentStation() {
+        Radio radio = new Radio();
 
-        station.getCurrentStation();
         int expected = 0;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
 
-
     @Test
-    void setCurrentStation() {
-        Radio station = new Radio();
+    void shouldSetCurrentStationWhenStationGraterThenMaxAllowed() {
+        Radio radio = new Radio();
 
-        station.setCurrentStation(10);
+        radio.setCurrentStation(10);
         int expected = 0;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
-    @Test
-    void setCurrentStation1() {
-        Radio station = new Radio();
 
-        station.setCurrentStation(9);
+    @Test
+    void shouldSetCurrentStationWhenStationAllowed() {
+        Radio radio = new Radio();
+
+        radio.setCurrentStation(9);
         int expected = 9;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
-    @Test
-    void setCurrentStation2() {
-        Radio station = new Radio();
 
-        station.setCurrentStation(-1);
+    @Test
+    void shouldSetCurrentStationWhenStationNotAllowed() {
+        Radio radio = new Radio();
+
+        radio.setCurrentStation(-1);
         int expected = 0;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
 
-
     @Test
-    void switchToNextStation() {
-        Radio station = new Radio();
+    void shouldSetCurrentStationZero() {
+        Radio radio = new Radio();
 
-        station.switchToNextStation(9);
+        radio.setCurrentStation(11);
         int expected = 0;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
-
     }
 
-    @Test
-    void switchToNextStation1() {
-        Radio station = new Radio();
 
-        station.switchToNextStation(8);
+    @Test
+    void shouldSwitchToNextStation() {
+        Radio radio = new Radio();
+
+        radio.setCurrentStation(8);
+        radio.switchToNextStation();
         int expected = 9;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
-    @Test
-    void switchToNextStation2() {
-        Radio station = new Radio();
 
-        station.switchToNextStation(-1);
+    @Test
+    void shouldSwitchToNextStation2() {
+        Radio radio = new Radio();
+
+        radio.switchToNextStation();
+        int expected = 1;
+        int actual = radio.getCurrentStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldSwitchToNextStationWhenStationGraterThenMaxAllowed() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(9);
+
+        radio.switchToNextStation();
         int expected = 0;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void switchToNextStation3() {
-        Radio station = new Radio();
+    void shouldSwitchToNextStationWhenStationGraterWhenStationAllowed() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(0);
 
-        station.switchToNextStation(10);
-        int expected = 0;
-        int actual = station.getCurrentStation();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void swithToPreviousStation() {
-        Radio station = new Radio();
-
-        station.swithToPreviousStation(0);
+        radio.switchToPreviousStation();
         int expected = 9;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void swithToPreviousStation1() {
-        Radio station = new Radio();
+    void shouldSwithToPreviousStation() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(9);
 
-        station.swithToPreviousStation(9);
+        radio.switchToPreviousStation();
         int expected = 8;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
     @Test
-    void swithToPreviousStation2() {
-        Radio station = new Radio();
+    void shouldSwithToPreviousStationValidValue() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(8);
 
-        station.swithToPreviousStation(8);
+        radio.switchToPreviousStation();
         int expected = 7;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void swithToPreviousStation3() {
-        Radio station = new Radio();
+    void shouldSwithToPreviousStationWhenStationMinValue() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(0);
 
-        station.swithToPreviousStation(-1);
+        radio.switchToPreviousStation();
         int expected = 9;
-        int actual = station.getCurrentStation();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
-    @Test
-    void swithToPreviousStation4() {
-        Radio station = new Radio();
 
-        station.swithToPreviousStation(10);
+    @Test
+    void shouldSwithToPreviousStationGraterWhenStationAllowed() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(1);
+
+        radio.switchToPreviousStation();
         int expected = 0;
-        int actual = station.getCurrentStation();
-
-        assertEquals(expected, actual);
-    }
-
-
-    @Test
-    void setCurrentVolume() {
-        Radio sound = new Radio();
-
-        sound.setCurrentVolume(10);
-        int expected = 10;
-        int actual = sound.getCurrentVolume();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void setCurrentVolume1() {
-        Radio sound = new Radio();
+    void shouldSwithToPreviousStationWhencurrentStationMinValue() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(0);
 
-        sound.setCurrentVolume(11);
-        int expected = 0;
-        int actual = sound.getCurrentVolume();
-
-        assertEquals(expected, actual);
-
-    }
-
-    @Test
-    void setCurrentVolume2() {
-        Radio sound = new Radio();
-
-        sound.setCurrentVolume(0);
-        int expected = 0;
-        int actual = sound.getCurrentVolume();
-
-        assertEquals(expected, actual);
-
-    }
-    @Test
-    void setCurrentVolume3() {
-        Radio sound = new Radio();
-
-        sound.setCurrentVolume(-1);
-        int expected = 0;
-        int actual = sound.getCurrentVolume();
-
-        assertEquals(expected, actual);
-
-    }
-
-    @Test
-    void increaseVolume() {
-        Radio sound = new Radio();
-
-        sound.increaseVolume(10);
-        int expected = 0;
-        int actual = sound.getCurrentVolume();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void increaseVolume1() {
-        Radio sound = new Radio();
-
-        sound.increaseVolume(8);
+        radio.switchToPreviousStation();
         int expected = 9;
-        int actual = sound.getCurrentVolume();
+        int actual = radio.getCurrentStation();
 
         assertEquals(expected, actual);
     }
-    @Test
-    void increaseVolume2() {
-        Radio sound = new Radio();
 
-        sound.increaseVolume(11);
+
+    @Test
+    void shouldSetCurrentVolumeWhenVolumeGraterThenMaxAllowed() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(10);
+        int expected = 10;
+        int actual = radio.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldSetCurrentVolumeWhenVolumeAllowed() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(11);
         int expected = 0;
-        int actual = sound.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
 
         assertEquals(expected, actual);
     }
 
+    @Test
+    void shouldSetCurrentVolumeZero() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(0);
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+
+        assertEquals(expected, actual);
+
+    }
+    @Test
+    void shouldSetCurrentVolume() {
+        Radio radio = new Radio();
+
+        radio.setCurrentVolume(5);
+        int expected = 5;
+        int actual = radio.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
 
     @Test
-    void reduceVolume() {
-        Radio sound = new Radio();
+    void shouldSetCurrentVolumeWhenVolumeNotAllowed() {
+        Radio radio = new Radio();
 
-        sound.reduceVolume(10);
+        radio.setCurrentVolume(-1);
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldIncreaseVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(10);
+
+        radio.increaseVolume();
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldIncreaseVolumeWhenValueIsValidByOne() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(8);
+
+        radio.increaseVolume();
         int expected = 9;
-        int actual = sound.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void shouldIncreaseVolumeWhenValueIsValid() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(0);
+
+        radio.increaseVolume();
+        int expected = 1;
+        int actual = radio.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    void shouldReduceVolumeWhenValueIsValidByOne() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(10);
+
+        radio.reduceVolume();
+        int expected = 9;
+        int actual = radio.getCurrentVolume();
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void reduceVolume1() {
-        Radio sound = new Radio();
+    void shouldReduceVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(0);
 
-        sound.reduceVolume(0);
+        radio.reduceVolume();
         int expected = 10;
-        int actual = sound.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
 
         assertEquals(expected, actual);
     }
-    @Test
-    void reduceVolume2() {
-        Radio sound = new Radio();
 
-        sound.reduceVolume(-1);
-        int expected = 10;
-        int actual = sound.getCurrentVolume();
+    @Test
+    void shouldReduceVolumebyOne() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(7);
+
+        radio.reduceVolume();
+        int expected = 6;
+        int actual = radio.getCurrentVolume();
 
         assertEquals(expected, actual);
     }
-    @Test
-    void reduceVolume3() {
-        Radio sound = new Radio();
 
-        sound.reduceVolume(11);
+    @Test
+    void shouldReduceVolumeInTheRangeValues() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(1);
+
+        radio.reduceVolume();
         int expected = 0;
-        int actual = sound.getCurrentVolume();
+        int actual = radio.getCurrentVolume();
 
         assertEquals(expected, actual);
     }
 
+    @Test
+    void shouldReduceVolumeWhenVolumeAllowed() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(0);
+
+        radio.reduceVolume();
+        int expected = 10;
+        int actual = radio.getCurrentVolume();
+
+        assertEquals(expected, actual);
+    }
 }
